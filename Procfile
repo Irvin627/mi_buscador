@@ -1,0 +1,1 @@
+web: gunicorn web_buscador.wsgi --log-file -

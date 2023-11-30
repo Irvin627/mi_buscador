@@ -1,0 +1,35 @@
+<!-- buscador/resultados.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Búsqueda</title>
+</head>
+<body>
+    {% if resultados_totales %}
+        <h2>Resultados para todas las palabras clave</h2>
+        <p>Tiempo total de búsqueda: {{ tiempo_total }} segundos</p>
+        <ul>
+            {% for item in resultados_totales %}
+                <li>
+                    <h2>Resultados para '{{ item.palabra_clave }}'</h2>
+                    {% if item.resultados %}
+                        <ul>
+                            {% for resultado in item.resultados %}
+                                <li>
+                                    <p>URL: {{ resultado.url }}</p>
+                                    <p>Título: {{ resultado.titulo }}</p>
+                                    <p>Relevancia: {{ resultado.relevancia }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No se encontraron resultados para '{{ item.palabra_clave }}'</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados para las palabras clave proporcionadas</p>
+    {% endif %}
+</body>
+</html>
