@@ -1,15 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Mi buscador</title>
+    <link rel="stylesheet" href="{% static 'styles/buscador.css' %}">
 </head>
 <body>
-    <h1>Buscador</h1>
+<center>
+  <div class="logo">
+    <img alt="Google" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+  </div>
+  <div class="bar">
     <form method="get" action="{% url 'buscar' %}">
-        <label for="palabras_clave">Palabras clave:</label>
-        <input type="text" name="palabras_clave" required>
-        <input type="submit" value="Buscar">
+        <input class="searchbar" type="text" name="palabras_clave" title="Search" required>
     </form>
-</body>
+  </div>
+  <div class="buttons">
+    <button class="button" type="button">Irvin Hernandez Velez</button>
+    <button class="button" type="button">Armando Sosa Escalante</button>
+  </div>
+  </body>
 </html>
 
