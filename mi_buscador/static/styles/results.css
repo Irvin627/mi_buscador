@@ -96,16 +96,6 @@ body {
     outline: none;
   }
   
-  #boxesicon {
-    width: 25px;
-    height: 25px;
-    background-image: url("images/boxes.png");
-    opacity: 0.6;
-    background-size: 26px;
-    position: absolute;
-    right: 130px;
-    bottom: 14px;
-  }
   
   #optionsmenuactive::after {
     content: "";
@@ -170,21 +160,7 @@ body {
     border-width: 0px;
     background-color: white;
   }
-  
-  #bellicon {
-    width: 20px;
-    height: 20px;
-    background-color: rgb(105, 105, 105);
-    background-image: url("images/bell.png");
-    background-size: 12px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    border-radius: 30px;
-    position: absolute;
-    right: 90px;
-    bottom: 18px;
-  }
-  
+
   #profileimage {
     border-radius: 50px;
     width: 32px;
@@ -282,19 +258,7 @@ body {
     font-size: 20px;
     transform: scale(0.7, 1.2);
   }
-  
-  .pagelistprevious::after {
-    content: "";
-    display: block;
-    position: absolute;
-    right: -40px;
-    top: -35px;
-    width: 40px;
-    height: 40px;
-    background-image: url("images/g.png");
-    background-repeat: no-repeat;
-    background-size: 28px;
-  }
+
   
   .pagelistfirst {
     margin-left: 20px;
@@ -361,19 +325,7 @@ body {
     font-size: 20px;
     transform: scale(0.7, 1.2);
   }
-  
-  .pagelistnext::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: -55px;
-    top: -37px;
-    width: 50px;
-    height: 50px;
-    background-image: url("images/gle.png");
-    background-repeat: no-repeat;
-    background-size: 48px;
-  }
+
   
   #footer {
     background-color: rgb(238, 238, 238);
