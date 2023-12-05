@@ -79,3 +79,58 @@ def buscar(request):
         return render(request, 'buscador/resultados.html', {'resultados_totales': resultados_totales, 'tiempo_total': tiempo_total})
     
     return render(request, 'buscador/buscar.html')
+
+    #///////////////////////////////////////////////////////////////////////////////////////////////////
+    #BUSCAR SIN TITULO
+    #///////////////////////////////////////////////////////////////////////////////////////////////////
+    # Leer el archivo JSON y cargar el diccionario
+def buscar_palabra_clave2(palabra_clave, diccionario):
+    resultados = []
+
+    if palabra_clave in diccionario:
+        urls = diccionario[palabra_clave]
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            futuros = {executor.submit(dummy_function, url): (url, relevancia) for url, relevancia in urls}
+
+            # Esperar a que todas las tareas se completen
+            concurrent.futures.wait(futuros)
+
+            # Obtener resultados ordenados por relevancia
+            resultados_ordenados = sorted(futuros, key=lambda x: futuros[x][1], reverse=True)
+
+            for resultado in resultados_ordenados:
+                url, relevancia = futuros[resultado]
+                resultados.append({
+                    'url': url,
+                    'relevancia': relevancia
+                })
+
+    return resultados
+
+def dummy_function(url):
+    return ""
+
+def buscar2(request):
+    resultados_totales = []
+
+    start_time = time.time()
+    
+    if 'palabras_clave' in request.GET:
+        palabras_clave = request.GET['palabras_clave'].split()
+
+        for palabra_clave in palabras_clave:
+            try:
+                palabra = Palabra.objects.get(nombre=palabra_clave)
+                urls = URL.objects.filter(palabra=palabra)
+                resultados_palabra = buscar_palabra_clave2(palabra_clave, diccionario)
+                resultados_totales.append({'palabra_clave': palabra_clave, 'resultados': resultados_palabra})
+            except Palabra.DoesNotExist:
+                pass
+        
+        end_time = time.time()
+        tiempo_total = end_time - start_time
+
+        return render(request, 'buscador/resultados2.html', {'resultados_totales': resultados_totales, 'tiempo_total': tiempo_total})
+    
+    return render(request, 'buscador/buscar2.html')
