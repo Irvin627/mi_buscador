@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi buscador</title>
+    <title>Mi buscador 2</title>
     <link rel="stylesheet" href="{% static 'styles/buscador.css' %}">
 </head>
 <body>
@@ -11,13 +11,13 @@
     <img alt="Google" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
   </div>
   <div class="bar">
-    <form method="get" action="{% url 'buscar' %}">
+    <form method="get" action="{% url 'buscar2' %}">
         <input class="searchbar" type="text" name="palabras_clave" title="Search" required>
     </form>
   </div>
   <div class="buttons">
-    <a href="{% url 'buscar2' %}"">
-      <button class="button" type="button">Ir al buscador sin titulos</button>
+    <a href="{% url 'buscar' %}"">
+      <button class="button" type="button">Ir al buscador con titulos</button>
     </a>
     <br>
     <button class="button" type="button">Irvin Hernandez Velez</button>

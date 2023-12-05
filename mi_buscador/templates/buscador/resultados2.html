@@ -1,0 +1,46 @@
+<!-- buscador/resultados.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="{% static 'styles/results.css' %}">
+</head>
+<body>
+    {% if resultados_totales %}
+        <div id="searchresultsarea">
+            <div id="optionsbar">
+                <ul id="optionsmenu1">
+                  <li id="optionsmenuactive">Resultados de la busqueda</li>
+                </ul>
+            </div>
+        <p id="searchresultsnumber">Tiempo total de búsqueda: {{ tiempo_total }} segundos </p>
+        </div>
+        <ul>
+            {% for item in resultados_totales %}
+            <div id="searchresultsarea">
+                <li>
+                    <h2>Resultados para '{{ item.palabra_clave }}'</h2>
+                    {% if item.resultados %}
+                        <ul>
+                            {% for resultado in item.resultados %}
+                            <div class="searchresult">
+                                <li>
+                                    <h2>{{ resultado.url }}</h2>
+                                    <p>Relevancia: {{ resultado.relevancia }}</p>
+                                </li>
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No se encontraron resultados para '{{ item.palabra_clave }}'</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </div>
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados para las palabras clave proporcionadas</p>
+    {% endif %}
+</body>
+</html>
